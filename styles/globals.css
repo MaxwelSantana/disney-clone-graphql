@@ -63,3 +63,7 @@ a {
 .video-overlay {
   position: absolute;
 }
+
+.info-footer {
+  height: 100vh;
+}

@@ -45,31 +45,36 @@ function Video({ video }) {
 
   return (
     <>
-      <img
-        className="video-image"
-        src={video.thumbnail.url}
-        alt={video.title}
-      />
-      <div className="info">
-        <p>{video.tags.join(", ")}</p>
-        <p>{video.description}</p>
-        <a href="/">
-          <p>go back</p>
-        </a>
-        <button
-          className="video-overlay"
-          onClick={() => {
-            setWatching(!watching);
-          }}
-        >
-          Play
-        </button>
-      </div>
+      {!watching && (
+        <img
+          className="video-image"
+          src={video.thumbnail.url}
+          alt={video.title}
+        />
+      )}
+      {!watching && (
+        <div className="info">
+          <p>{video.tags.join(", ")}</p>
+          <p>{video.description}</p>
+          <a href="/">
+            <p>go back</p>
+          </a>
+          <button
+            className="video-overlay"
+            onClick={() => {
+              setWatching(!watching);
+            }}
+          >
+            Play
+          </button>
+        </div>
+      )}
       {watching && (
-        <video>
-          <source src={video.mp4.url} type="video/mp4"/>
+        <video width="100%" controls>
+          <source src={video.mp4.url} type="video/mp4" />
         </video>
       )}
+      <div className="info-footer" onClick={() => setWatching(false)}></div>
     </>
   );
 }
